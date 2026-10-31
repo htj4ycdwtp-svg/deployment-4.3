@@ -26,5 +26,5 @@ jobs:
       - name: Deploy application
         run: |
           echo "Starting production deployment..."
-          sleep 45
+          sleep 100
           echo "Production deployment complete!"
