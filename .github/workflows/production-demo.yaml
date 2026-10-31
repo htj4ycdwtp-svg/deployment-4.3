@@ -1,0 +1,30 @@
+
+name: Production Deployment Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run tests
+        run: echo "All tests passed!"
+
+  deploy_production:
+    needs: test
+    runs-on: ubuntu-latest
+
+    environment: production
+
+    concurrency:
+      group: production-deploy
+      cancel-in-progress: false
+
+    steps:
+      - name: Deploy application
+        run: |
+          echo "Starting production deployment..."
+          sleep 45
+          echo "Production deployment complete!"
